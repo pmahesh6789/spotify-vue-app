@@ -1,0 +1,14 @@
+
+footer {
+   position: fixed;
+   bottom: 0;
+   height: 50px;
+   width: 100%;
+   background: $colorDarkGray;
+   color: $colorWhite;
+    
+   h6 {
+       margin: 20px 0px;
+       text-align: center;
+   }
+}

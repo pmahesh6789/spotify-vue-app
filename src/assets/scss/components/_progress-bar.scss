@@ -1,0 +1,11 @@
+.progress {
+    border: 1px solid $colorLightWhite;
+    height: 6px;
+    border-radius: 3px;
+    overflow: hidden;
+
+    &__bar {
+        background-color: $colorLightWhite;
+        height: 4px;
+    }
+}

@@ -12,18 +12,7 @@ export default Vue.extend({
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Only component specific scoped SCSS will be added here. -->
 <style scoped lang="scss">
-h6 {
-  margin: 20px 0px;
-  text-align: center;
-}
-footer {
-  position: fixed;
-  bottom: 0;
-  height: 50px;
-  width: 100%;
-  background: #4c4c4c;
-  color: #FFF;
-}
+
 </style>

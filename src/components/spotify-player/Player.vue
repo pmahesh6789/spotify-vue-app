@@ -51,49 +51,7 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-/** Now Playing **/
-.now-playing__name {
-    font-size: 1.5em;
-    margin-bottom: 0.2em;
-}
+<!-- Only component specific scoped SCSS will be added here. -->
+<style scoped lang="scss">
 
-.now-playing__artist {
-    margin-bottom: 1em;
-}
-
-.now-playing__status {
-    margin-bottom: 1em;
-}
-
-.now-playing__img {
-    float: left;
-    margin-right: 10px;
-    text-align: right;
-    width: 45%;
-}
-
-.now-playing__img img {
-    max-width: 80vmin;
-    width: 100%;
-}
-
-.now-playing__side {
-    margin-left: 5%;
-    width: 100%;
-}
-
-/** Progress **/
-.progress {
-    border: 1px solid #eee;
-    height: 6px;
-    border-radius: 3px;
-    overflow: hidden;
-}
-
-.progress__bar {
-    background-color: #eee;
-    height: 4px;
-}
 </style>
