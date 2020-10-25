@@ -23,6 +23,7 @@
 
 <script>
 import PlayingSong from './Consants';
+
 export default {
   name: 'Player',
   props: {
@@ -31,9 +32,16 @@ export default {
     progress_ms: Number,
   },
   methods: {
+    /*
+    * Get the playing song's progress status.
+    */
     progressBarStyles() {
       return { width: (this.progress_ms * 100 / this.item?.duration_ms) + '%' };
     },
+
+    /*
+    * Get the backgroung image of playing song.
+    */
     backgroundStyles() {
       return {
         backgroundImage: `url(${
@@ -41,9 +49,17 @@ export default {
         })`
       };
     },
+
+    /*
+    * Get artist name of playing song.
+    */
     getArtistName() {
       return this.item?.artists[0]?.name || '';
     },
+
+    /*
+    * Get URL path of playing song.
+    */
     getPlayingSongUrl() {
       return this.item?.album?.images[0]?.url || '';
     }

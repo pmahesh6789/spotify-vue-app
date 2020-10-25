@@ -25,8 +25,8 @@ import Vue from 'vue';
 import axios from 'axios';
 
 import hash from '@/hash';
+// TODO: If we use .env file for application specific congif then remove this config ref.
 import { authEndpoint, clientId, redirectUri, scopes } from '@/config';
-import PlayingSong from './Consants';
 import Player from './Player.vue';
 
 export default Vue.extend({
@@ -52,20 +52,24 @@ export default Vue.extend({
     };
   },
   methods: {
+    /*
+    * Get and update DOM as per current playing songs information.
+    * TODO: Update this method if we use vuex state management later.
+    */
     getCurrentlyPlaying(token: string | null) {
       if (!token) {
         return;
       }
 
-      // Make a call using the token
-      const url = 'https://api.spotify.com/v1/me/player';
+      const API_URL = 'https://api.spotify.com/v1/me/player';
       const options = {
         headers: {
           Authorization: 'Bearer ' + token
         },
       };
 
-      axios.get(url, options)
+      // Make a axios call using the token
+      axios.get(API_URL, options)
         .then((resp) => {
           if (!resp.data) {
             this.no_data = true;
@@ -80,11 +84,20 @@ export default Vue.extend({
           console.log('Error -' + JSON.stringify(error, null, 4));
         });
     },
+
+    /*
+    * Tick event method for check token and update playing song.
+    */
     tick() {
       if (this.token) {
         this.getCurrentlyPlaying(this.token);
       }
     },
+
+    /*
+    * Get spotify token url for accept terms and conditions.
+    * Generates url as per required parameters.
+    */
     getSpotifyToken() {
       // NOTE: Remove config details from script and read from .env file.
       /* Secure data storing in the environment specific file will be good instead of in the script files.
@@ -125,13 +138,15 @@ export default Vue.extend({
               '%20')}&response_type=token&show_dialog=true`;
     },
   },
-  // created
+
+  /*
+  * On component mount event handaling.
+  */
   mounted() {
     // Set token
     const token = hash.access_token;
 
     if (token) {
-      // Set token
       this.token = token;
       this.getCurrentlyPlaying(token);
     }
@@ -139,6 +154,10 @@ export default Vue.extend({
     // set interval for polling every 5 seconds
     this.interval = setInterval(() => this.tick(), 5000);
   },
+
+  /*
+  * On component destroy event handaling.
+  */
   destroyed() {
     clearInterval(this.interval);
   },
