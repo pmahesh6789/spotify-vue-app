@@ -1,4 +1,5 @@
 const Dotenv = require('dotenv-webpack');
+const path = require("path");
 
 module.exports = {
   configureWebpack: {
@@ -7,9 +8,11 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        data: `
-          @import "@/assets/scss/main.scss";
-        `,
+        sassOptions: {
+          includePaths: [path.resolve(__dirname, "src/core/")],
+          indentedSyntax: true,
+        },
+        prependData: '@import "~@/assets/scss/main.scss"',
       },
     },
   },
